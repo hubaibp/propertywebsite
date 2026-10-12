@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Media Preview Tool | OKHLA PROPERTIES</title>
+<meta name="robots" content="noindex">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;600&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="hdr"></div>
+<main><div class="pg"><div class="wrap"><h1 data-i18n="mediaTool"></h1></div></div>
+<section><div class="wrap" style="max-width:800px">
+  <div class="note"><b>Preview only.</b> Files you pick here are shown temporarily in your browser. They are NOT uploaded to the website. To add them permanently, copy the files into the folder shown below and paste the snippet into <code>js/property-data.js</code>. (You can also just paste any image web link there.)</div>
+  <div class="dbox"><div class="fgrp"><label for="pid">Property</label><select id="pid"></select></div>
+    <div class="fgrp"><label for="fi">Images (select multiple)</label><input id="fi" type="file" accept="image/*" multiple></div>
+    <div class="pv" id="pv"></div>
+    <div class="fgrp"><label for="fv">Video (MP4 / WebM)</label><input id="fv" type="file" accept="video/mp4,video/webm"></div>
+    <video id="vp" controls hidden playsinline></video></div>
+  <div class="dbox"><h2>Folder &amp; snippet</h2><p class="loc" id="fold"></p><pre class="pre" id="snip">Select files to generate the snippet.</pre>
+    <button class="btn b-pri" id="cp" style="margin-top:10px">Copy snippet</button></div>
+</div></section></main>
+<div id="ftr"></div>
+<script src="js/property-data.js"></script>
+<script src="js/main.js"></script>
+<script>
+const g=i=>document.getElementById(i);let urls=[];
+g("pid").innerHTML=PROPERTIES.map(p=>`<option value="${p.id}">${p.id} — ${p.title}</option>`).join("");
+const ext=f=>(f.name.split(".").pop()||"jpg").toLowerCase();
+function snip(){const id=g("pid").value,im=[...g("fi").files],vd=g("fv").files[0],names=["cover","bedroom","kitchen","living-room","extra-1","extra-2","extra-3","extra-4"];
+ g("fold").textContent=`Copy images to: images/properties/${id}/   ·   video to: videos/properties/${id}/`;
+ const paths=im.map((f,i)=>`"images/properties/${id}/${names[i]||"extra-"+i}.${ext(f)}"`);
+ let s=im.length?`images: [\n  ${paths.join(",\n  ")}\n],`:"";
+ if(vd)s+=`\nvideos: ["videos/properties/${id}/walkthrough.${ext(vd)}"],`;
+ g("snip").textContent=s||"Select files to generate the snippet."}
+g("fi").onchange=()=>{urls.forEach(URL.revokeObjectURL);urls=[...g("fi").files].map(f=>URL.createObjectURL(f));g("pv").innerHTML=urls.map(u=>`<img src="${u}" alt="Preview">`).join("");snip()};
+g("fv").onchange=()=>{const f=g("fv").files[0];if(!f)return;const v=g("vp");v.src=URL.createObjectURL(f);v.hidden=false;snip()};
+g("pid").onchange=snip;snip();
+g("cp").onclick=async()=>{try{await navigator.clipboard.writeText(g("snip").textContent);toast("Copied")}catch{toast("Select and copy manually")}};
+</script>
+</body>
+</html>

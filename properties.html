@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Properties for Rent in Okhla | OKHLA PROPERTIES</title>
+<meta name="description" content="Search flats and room sets for rent in Okhla, Shaheen Bagh, Jasola, Johri Farm and Jamia Nagar. Filter by rent, BHK, parking and more.">
+<meta property="og:title" content="Properties for Rent in Okhla — OKHLA PROPERTIES">
+<meta property="og:type" content="website">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;600&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="hdr"></div>
+<main>
+<div class="pg"><div class="wrap"><h1 data-i18n="properties"></h1></div></div>
+<section style="padding-top:18px"><div class="wrap">
+  <div class="ft">
+    <input id="q" type="search" list="sug" data-i18n-ph="searchPh" aria-label="Search" style="flex:1 1 200px"><datalist id="sug"></datalist>
+    <button class="btn b-out tgl" id="ftog" aria-expanded="false" aria-controls="fp">⚙ <span data-i18n="filters"></span></button>
+  </div>
+  <div class="fp" id="fp">
+    <div><label for="loc" data-i18n="location"></label><select id="loc"></select></div>
+    <div><label for="type" data-i18n="propType"></label><select id="type"></select></div>
+    <div><label for="min" data-i18n="minRent"></label><input id="min" type="number" inputmode="numeric" min="0" step="1000"></div>
+    <div><label for="max" data-i18n="maxRent"></label><input id="max" type="number" inputmode="numeric" min="0" step="1000"></div>
+    <div><label for="bhk" data-i18n="bhk"></label><select id="bhk"></select></div>
+    <div><label for="tenant" data-i18n="tenantPref"></label><select id="tenant"></select></div>
+    <div><label for="parking" data-i18n="parking"></label><select id="parking"></select></div>
+    <div><label for="lift" data-i18n="lift"></label><select id="lift"></select></div>
+    <div><label for="furn" data-i18n="furnishing"></label><select id="furn"></select></div>
+    <div><label for="floor" data-i18n="floor"></label><select id="floor"></select></div>
+    <div class="full"><label for="sort" data-i18n="sortBy"></label><select id="sort"></select></div>
+    <div class="full"><button class="btn b-out" id="clear" style="width:100%" data-i18n="clear"></button></div>
+  </div>
+  <button class="btn b-out b-sm" id="favT"></button>
+  <div class="cnt" id="count" aria-live="polite"></div>
+  <div class="grid" id="grid"></div>
+</div></section>
+</main>
+<div id="ftr"></div>
+<script src="js/property-data.js"></script>
+<script src="js/main.js"></script>
+<script src="js/properties.js"></script>
+</body>
+</html>

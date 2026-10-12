@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>About Us | OKHLA PROPERTIES</title>
+<meta name="description" content="Okhla Properties helps customers find rental flats, apartments and room sets across Okhla and nearby areas in New Delhi.">
+<meta property="og:title" content="About OKHLA PROPERTIES">
+<meta property="og:type" content="website">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;600&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="hdr"></div>
+<main>
+<div class="pg"><div class="wrap"><h1 data-i18n="aboutH"></h1><p class="sub" style="margin-top:8px;max-width:700px" data-i18n="aboutP"></p></div></div>
+<section><div class="wrap"><h2 data-i18n="services"></h2>
+  <div class="feat" style="margin-top:12px;grid-template-columns:repeat(auto-fit,minmax(160px,1fr))"><div data-i18n="s1"></div><div data-i18n="s2"></div><div data-i18n="s3"></div><div data-i18n="s4"></div><div data-i18n="s5"></div></div></div></section>
+<section class="alt"><div class="wrap"><h2 data-i18n="areas"></h2><div class="tiles" id="locs"></div></div></section>
+<section><div class="wrap"><h2 data-i18n="how"></h2><div class="feat" style="margin-top:14px">
+  <div><b data-i18n="how1"></b><span data-i18n="how1d"></span></div><div><b data-i18n="how2"></b><span data-i18n="how2d"></span></div>
+  <div><b data-i18n="how3"></b><span data-i18n="how3d"></span></div><div><b data-i18n="how4"></b><span data-i18n="how4d"></span></div></div></div></section>
+<section class="alt"><div class="wrap"><div class="banner"><h2 data-i18n="contactUs"></h2><p>📞 +91 8506033206 · 📍 <span data-i18n="address"></span></p>
+  <a class="btn b-wa" href="https://wa.me/918506033206" target="_blank" rel="noopener" data-i18n="contactWA"></a>
+  <a class="btn b-pri" href="contact.html" data-i18n="contact"></a></div></div></section>
+</main>
+<div id="ftr"></div>
+<script src="js/property-data.js"></script>
+<script src="js/main.js"></script>
+<script>document.getElementById("locs").innerHTML=LOCS.map(l=>`<a class="tile" href="properties.html?loc=${encodeURIComponent(l)}">${l}</a>`).join("")</script>
+</body>
+</html>

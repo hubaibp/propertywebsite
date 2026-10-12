@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Contact Us | OKHLA PROPERTIES</title>
+<meta name="description" content="Contact Okhla Properties on +91 8506033206 for rent, buy or sell enquiries in Okhla, Jamia Nagar, New Delhi.">
+<meta property="og:title" content="Contact OKHLA PROPERTIES">
+<meta property="og:type" content="website">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;600&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="hdr"></div>
+<main>
+<div class="pg"><div class="wrap"><h1 data-i18n="contact"></h1></div></div>
+<section><div class="wrap" style="display:grid;gap:22px;max-width:900px">
+  <div class="dbox"><h2>OKHLA PROPERTIES</h2>
+    <p>📞 <a href="tel:+918506033206"><b>+91 8506033206</b></a></p>
+    <p>💬 WhatsApp: <a href="https://wa.me/918506033206" target="_blank" rel="noopener"><b>+91 8506033206</b></a></p>
+    <p>📍 <span data-i18n="address"></span></p>
+    <p style="margin:12px 0 8px" data-i18n="group"></p>
+    <a class="btn b-wa" href="https://chat.whatsapp.com/CDR8pZ8re4Y1sImtup7aHV?s=cl&p=a&mlu=2" target="_blank" rel="noopener" data-i18n="joinGroup"></a></div>
+  <div class="dbox"><h2 data-i18n="contactTitle"></h2>
+    <form id="cf" novalidate>
+      <div class="row2"><div class="fgrp"><label for="cn" data-i18n="name"></label><input id="cn" autocomplete="name"><div class="err"></div></div>
+      <div class="fgrp"><label for="cp" data-i18n="phone"></label><input id="cp" type="tel" inputmode="numeric" autocomplete="tel"><div class="err"></div></div></div>
+      <div class="row2"><div class="fgrp"><label for="cr" data-i18n="requirement"></label><select id="cr"><option value="" data-i18n="any"></option><option value="Rent" data-i18n="reqRent"></option><option value="Buy" data-i18n="reqBuy"></option><option value="Sell" data-i18n="reqSell"></option></select><div class="err"></div></div>
+      <div class="fgrp"><label for="cbud" data-i18n="budget"></label><select id="cbud"></select></div></div>
+      <div class="row2"><div class="fgrp"><label for="cl" data-i18n="prefLoc"></label><select id="cl"></select></div>
+      <div class="fgrp"><label for="cb" data-i18n="famBach"></label><select id="cb"><option value="" data-i18n="any"></option><option value="Family" data-i18n="familyO"></option><option value="Bachelor" data-i18n="bachelorO"></option></select><div class="err"></div></div></div>
+      <div class="fgrp"><label for="cm" data-i18n="msg"></label><textarea id="cm"></textarea></div>
+      <div class="note" data-i18n="contactNote"></div>
+      <button class="btn b-wa" style="width:100%" data-i18n="submit"></button>
+    </form></div>
+</div></section>
+</main>
+<div id="ftr"></div>
+<script src="js/property-data.js"></script>
+<script src="js/main.js"></script>
+<script>
+const g=i=>document.getElementById(i);
+g("cbud").innerHTML='<option value="" data-i18n="anyBudget"></option>'+BUDGETS.map(([v,k])=>`<option value="${k}" data-i18n="${k}"></option>`).join("");
+g("cl").innerHTML='<option value="" data-i18n="allLoc"></option>'+LOCS.map(l=>`<option>${l}</option>`).join("");
+const rq=new URLSearchParams(location.search).get("req"); if(rq) g("cr").value=rq;
+g("cf").onsubmit=e=>{e.preventDefault();
+ if(!validate([[g("cn"),v=>v.length>1,"eName"],[g("cp"),phoneOK,"ePhone"],[g("cr"),v=>v,"eSel"],[g("cb"),v=>v,"eSel"]]))return;
+ const b=g("cbud"),bt=b.value?T.en[b.value]:"-";
+ openWA(`Hello Okhla Properties,\n\nNew enquiry:\n\nName: ${g("cn").value.trim()}\nPhone: ${g("cp").value.trim()}\nRequirement: ${g("cr").value}\nBudget: ${bt}\nPreferred Location: ${g("cl").value||"-"}\nFamily/Bachelor: ${g("cb").value}\nMessage: ${g("cm").value.trim()||"-"}`)};
+</script>
+</body>
+</html>
